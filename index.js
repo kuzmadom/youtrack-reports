@@ -32,7 +32,7 @@ async function getReport(){
     const resp = await (await fetch(url, args)).json();
     const list = resp.issue || [];
 
-    const report = list.map(item => {
+    return list.map(item => {
         const title = item.field.find(f => f.name === 'summary').value;
         const users = extractEmails(item.comment.map(c => c.text).join(' ')) || [];
         return {
@@ -41,8 +41,6 @@ async function getReport(){
             url: `https://youtrack.moedelo.org/youtrack/issue/${item.id}`
         };
     });
-
-    console.log(report.sort(compareByLoginsCount));
 }
 
 const button = document.getElementsByClassName('js-getReportBtn')[0];

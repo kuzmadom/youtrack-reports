@@ -47,5 +47,5 @@ const button = document.getElementsByClassName('js-getReportBtn')[0];
 button.onclick = async function() {
     const items = await getReport();
     const el = document.getElementsByClassName('js-list')[0];
-    el.innerHTML = items.map(i => `<div><a herf="${i.url}">${i.name} (${i.users.length})</a></div>`).join('');
+    el.innerHTML = items.sort(compareByLoginsCount).map(i => `<div><a href="${i.url}">${i.name} (${i.users.length})</a></div>`).join('');
 };

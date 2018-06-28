@@ -17,7 +17,7 @@ function compareByLoginsCount(a, b) {
   return 0;
 }
 
-  function getReport(){
+  async function getReport(){
     const filter = document.getElementsByClassName('js-filter')[0].value;
     const max = 1000;
     

@@ -3,11 +3,11 @@ function extractEmails(text) {
 }
 
 function compareByLoginsCount(a, b) {
-    if (a.users.length < b.users.length) {
+    if (a.users.length > b.users.length) {
         return -1;
     }
 
-    if (a.users.length > b.users.length) {
+    if (a.users.length < b.users.length) {
         return 1;
     }
 
@@ -36,7 +36,8 @@ async function getReport(){
         const title = item.field.find(f => f.name === 'summary').value;
         return {
             name: `${item.id} ${title}`,
-            users: extractEmails(item.comment.map(c => c.text).join(' ')) || []
+            users: extractEmails(item.comment.map(c => c.text).join(' ')) || [],
+            url: `https://youtrack.moedelo.org/youtrack/issue/${item.id}`
         };
     });
 

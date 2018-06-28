@@ -29,7 +29,8 @@ async function getReport(){
         credentials: 'include'
     };
 
-    const list = (await fetch(url, args)).json().issue;
+    const resp = (await fetch(url, args)).json();
+    const list = resp.issue || [];
 
     const report = list.map(item => {
         const title = item.field.find(f => f.name === 'summary').value;

@@ -39,7 +39,7 @@ async function getReport(){
         };
     });
 
-    console.log(report.sort(compareByLoginsCount);
+    console.log(report.sort(compareByLoginsCount));
 }
 
 const button = document.getElementsByClassName('js-getReportBtn')[0];

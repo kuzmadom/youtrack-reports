@@ -34,9 +34,10 @@ async function getReport(){
 
     const report = list.map(item => {
         const title = item.field.find(f => f.name === 'summary').value;
+        const users = extractEmails(item.comment.map(c => c.text).join(' ')) || [];
         return {
             name: `${item.id} ${title}`,
-            users: extractEmails(item.comment.map(c => c.text).join(' ')) || [],
+            users: users,
             url: `https://youtrack.moedelo.org/youtrack/issue/${item.id}`
         };
     });
@@ -45,4 +46,8 @@ async function getReport(){
 }
 
 const button = document.getElementsByClassName('js-getReportBtn')[0];
-button.onclick = getReport;
+button.onclick = async function() {
+    const items = await getReport();
+    const el = document.getElementsByClassName('js-list')[0];
+    el.innerHTML = items.map(i => `<div><a herf="${i.url}">${i.name} (${i.users.length})</a></div>`).join('');
+};

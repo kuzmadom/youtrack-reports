@@ -34,7 +34,8 @@ async function getReport(){
 
     return list.map(item => {
         const title = item.field.find(f => f.name === 'summary').value;
-        const users = extractEmails(item.comment.map(c => c.text).join(' ')) || [];
+        const description = item.field.find(f => f.name === 'description').value;
+        const users = extractEmails(description + item.comment.map(c => c.text).join(' ')) || [];
         return {
             name: `${item.id} ${title}`,
             users: users,

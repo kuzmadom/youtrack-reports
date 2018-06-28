@@ -29,7 +29,7 @@ async function getReport(){
         credentials: 'include'
     };
 
-    const resp = (await fetch(url, args)).json();
+    const resp = await (await fetch(url, args)).json();
     const list = resp.issue || [];
 
     const report = list.map(item => {

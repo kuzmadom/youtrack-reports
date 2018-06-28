@@ -50,3 +50,6 @@ button.onclick = async function() {
     const el = document.getElementsByClassName('js-list')[0];
     el.innerHTML = items.sort(compareByLoginsCount).map(i => `<div><a href="${i.url}">${i.name} (${i.users.length})</a></div>`).join('');
 };
+
+const hash = window.location.hash.replace('#', '');
+document.getElementsByClassName('js-filter')[0].value = hash;

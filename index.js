@@ -36,7 +36,7 @@ async function getReport(){
         const title = item.field.find(f => f.name === 'summary').value;
         return {
             name: `${item.id} ${title}`,
-            users: extractEmails(item.comment.map(c => c.text).join(' '))
+            users: extractEmails(item.comment.map(c => c.text).join(' ')) || []
         };
     });
 
